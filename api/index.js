@@ -4,8 +4,12 @@ const mongoose = require("mongoose")
 const dotenv = require('dotenv')
 const authRoute = require('./routes/auth')
 const userRoute = require('./routes/users')
+const movieRoute = require('./routes/movies')
+const listRoute = require('./routes/list')
+let cors = require("cors");
+app.use(cors());
 dotenv.config();
-
+ 
 mongoose.set('strictQuery', true);
 mongoose.connect(process.env.MONGO_URL)
 .then(()=> console.log("DB connection created successfully"))
@@ -13,11 +17,15 @@ mongoose.connect(process.env.MONGO_URL)
 
 app.use(express.json())
 
-app.use('/api/auth',authRoute)
-app.use('/api/user',userRoute)
-
+app.get('/',(req,res)=>{
+    res.status(200).send({"mesg":1})
+})
  
+app.use('/api/auth',authRoute)
+app.use('/api/movie',movieRoute)
+app.use('/api/user',userRoute)
+app.use('/api/list',listRoute)
 
-app.listen(8800,()=>{
+app.listen(5000,()=>{
     console.log('Backend is running')
 })

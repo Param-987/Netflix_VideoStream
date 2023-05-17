@@ -1,0 +1,41 @@
+POST http://localhost:8800/api/movie
+content-type: application/json
+
+{
+"title":"Animals",
+"desc":"Animal movie",
+"img":"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/image…",
+"imgTitle":"frontPage",
+"imgSmall":"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/image…",
+"trailer":"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Eleph…",
+"video":"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Eleph…",
+"year":"2016",
+"limit":180,
+"genre":"Timepass",
+"isSeries":true
+}
+
+###
+
+POST http://localhost:8800/api/auth/login
+Content-Type: application/json
+
+ {
+    "email":"20bcs150@iiitdmj.ac.in",
+    "password":"123456"
+ }
+
+###
+
+ 
+ POST http://localhost:8800/api/auth/register
+ 
+content-type: application/json
+
+ {
+    "username":"Paro",
+    "email":"20bcs150@iiitdmj.ac.in",
+    "password":123456,
+    "isAdmin":true 
+ }
+ 

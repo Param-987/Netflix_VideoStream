@@ -1,13 +1,30 @@
-import "./featured.scss";
+ import "./featured.scss";
 
 import { InfoOutlined, PlayArrow } from "@material-ui/icons";
+import { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
 
 const Featured = ({type}) => {
+
+  const [content,setContent] = useState({})
+
+  useEffect(()=>{
+    const getrandomMovie = async ()=>{
+      try {
+        const res = await axios.get(`movie/random?type=${type}`)
+        setContent(res.data[0])
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getrandomMovie();
+  },[type])
   return (
   <div className="featured">
     {type && (
         <div className="category">
-          <span>{type === "movie" ? "Movies" : "Series"}</span>
+          <span>{type === "movies" ? "Movies" : "Series"}</span>
           <select name="genre" id="genre">
             <option>Genre</option>
             <option value="adventure">Adventure</option>
@@ -26,13 +43,13 @@ const Featured = ({type}) => {
           </select>
         </div>
       )}
-    <img src="https://images.pexels.com/photos/6899260/pexels-photo-6899260.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="" />
+    <img src={content.img} alt="" />
 
     <div className="info">
-        <img src="https://occ-0-1432-1433.1.nflxso.net/dnm/api/v6/LmEnxtiAuzezXBjYXPuDgfZ4zZQ/AAAABUZdeG1DrMstq-YKHZ-dA-cx2uQN_YbCYx7RABDk0y7F8ZK6nzgCz4bp5qJVgMizPbVpIvXrd4xMBQAuNe0xmuW2WjoeGMDn1cFO.webp?r=df1" alt="" />
+        <img src={content.imgSmall} alt="" />
 
         <span className="desc">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, culpa consequatur consequuntur asperiores aperiam in est soluta impedit voluptatibus, sapiente laboriosam. Quae saepe nesciunt tenetur excepturi ipsa molestiae eligendi quas!
+          {content.desc}
         </span>
 
         <div className="button">
@@ -47,8 +64,6 @@ const Featured = ({type}) => {
             </button>
         </div>
     </div>
-
-
     </div>
     
     );
