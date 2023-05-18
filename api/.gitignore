@@ -270,4 +270,4 @@ google-services.json
 # Android Profiling
 *.hprof
 
-# End of https://www.toptal.com/developers/gitignore/api/reactnative,macos
+# End of https://www.toptal.com/developers/gitignore/api/reactnative,macos.DS_Store
