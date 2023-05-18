@@ -19,6 +19,7 @@ const Home = ({type}) => {
               token:"Bearer " + JSON.parse(localStorage.getItem('user')).accessToken
             }
           })
+          console.log(res.data)
         setlists(res.data)
          
       } catch (error) {

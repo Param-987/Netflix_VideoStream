@@ -58,7 +58,7 @@ export default function ListItem({index,item}) {
         </div>
 
         <div className="genre">
-            Action
+            {movie.genre}
         </div>
         </div>
     </>

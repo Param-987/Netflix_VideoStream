@@ -4,6 +4,7 @@ import { InfoOutlined, PlayArrow } from "@material-ui/icons";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Featured = ({type}) => {
 
@@ -20,6 +21,7 @@ const Featured = ({type}) => {
     }
     getrandomMovie();
   },[type])
+  console.log(content)
   return (
   <div className="featured">
     {type && (
@@ -53,10 +55,12 @@ const Featured = ({type}) => {
         </span>
 
         <div className="button">
+              <Link to={'/watch'} state = {{movie:content}}>
             <button className="play">
                 <PlayArrow/>
                 <span>Play</span>
             </button>
+              </Link>
             <button className="more">
                 <InfoOutlined/>
                 <span>Info</span>

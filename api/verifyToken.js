@@ -16,6 +16,6 @@ function verify(req,res,next) {
         return res.status(401).json("U are not authenticated")
     }
          
-}
+} 
 
 module.exports = verify 

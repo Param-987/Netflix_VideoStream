@@ -18,6 +18,12 @@ export const LoginReducer = (state , action)=>{
                     isFetching:false,
                     isError:true
                     }
+             case "LOGOUT_SUCCESS":
+                return {
+                    user:null,
+                    isFetching:false,
+                    isError:false
+                    }
         default:
             return {
                 ...state

@@ -1,4 +1,4 @@
-import { loginFailure, loginStart, loginSuccess } from "./LoginAction"
+import { LogOutStart, loginFailure, loginStart, loginSuccess } from "./LoginAction"
 import axios from 'axios'
 
 
@@ -22,4 +22,8 @@ export const register = async (user, dispatch) => {
     } catch (error) {
         dispatch(loginFailure())
     }
+}
+
+export const logout = (dispatch)=>{
+    dispatch(LogOutStart())
 }
