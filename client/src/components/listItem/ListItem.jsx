@@ -17,6 +17,7 @@ export default function ListItem({index,item}) {
                       token:"Bearer " + JSON.parse(localStorage.getItem('user')).accessToken
                     }
                   })
+                  console.log(res.data)
                   setMovie(res.data) 
             } catch (error) {
                 console.log(error);
@@ -25,6 +26,7 @@ export default function ListItem({index,item}) {
         getMovie();
     },[item])
 
+    // console.log(movie)
 
     const [isHovered , setIsHovered] = useState(false)
     
@@ -54,7 +56,7 @@ export default function ListItem({index,item}) {
         </div>
 
         <div className="desc">
-           {movie.desc}
+           {movie.title}
         </div>
 
         <div className="genre">

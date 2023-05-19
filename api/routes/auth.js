@@ -11,7 +11,8 @@ router.post('/register',async (req,res)=>{
         username:req.body.username,
         email:req.body.email,
         password:CryptoJS.AES.encrypt(req.body.password, process.env.Secret_key).toString(),
-        isAdmin:req.body.isAdmin
+        isAdmin:req.body.isAdmin,
+        fullname:req.body.fullname
     })
 
     try {
@@ -24,9 +25,7 @@ router.post('/register',async (req,res)=>{
         process.env.Secret_key,
         {expiresIn:"5d"}
         )
-        console.log("User:",user,user._doc)
         const {password, ...args} = user._doc
-        console.log("args:")
         res.status(201).json({...args,accessToken})
     } catch (error) {
         res.status(500).json(error)

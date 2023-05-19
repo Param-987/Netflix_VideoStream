@@ -36,7 +36,7 @@ export const createList = async (list,dispatch) =>{
     try {
             const res = await axios.post(`list/`,list,{
             headers:{
-                token:"Bearer  " + JSON.parse(localStorage.getItem('user')).accessToken,
+                token:"Bearer " + JSON.parse(localStorage.getItem('user')).accessToken,
             }
         })
         dispatch(createListSuccess(res.data))

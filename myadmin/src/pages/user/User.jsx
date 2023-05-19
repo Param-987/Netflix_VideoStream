@@ -6,10 +6,27 @@ import {
   PhoneAndroid,
   Publish,
 } from "@material-ui/icons";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./user.css";
+import { useContext, useState } from "react";
+import { updateUser } from "../../context/userContext/apiCall";
+import { UserContext } from "../../context/userContext/UserContext";
 
 export default function User() {
+  const { user } = useLocation().state;
+  const [User, setUser] = useState({});
+
+  const {dispatch} = useContext(UserContext)
+  const navigate = useNavigate()
+
+  const handleUpdate = (e)=>{
+    console.log('clicked')
+    e.preventDefault();
+    updateUser(user._id,dispatch,User)
+    navigate('/users')
+
+  }
+
   return (
     <div className="user">
       <div className="userTitleContainer">
@@ -27,7 +44,7 @@ export default function User() {
               className="userShowImg"
             />
             <div className="userShowTopTitle">
-              <span className="userShowUsername">Anna Becker</span>
+              <span className="userShowUsername">{user.username}</span>
               <span className="userShowUserTitle">Software Engineer</span>
             </div>
           </div>
@@ -35,7 +52,7 @@ export default function User() {
             <span className="userShowTitle">Account Details</span>
             <div className="userShowInfo">
               <PermIdentity className="userShowIcon" />
-              <span className="userShowInfoTitle">annabeck99</span>
+              <span className="userShowInfoTitle">{user.username}</span>
             </div>
             <div className="userShowInfo">
               <CalendarToday className="userShowIcon" />
@@ -48,7 +65,7 @@ export default function User() {
             </div>
             <div className="userShowInfo">
               <MailOutline className="userShowIcon" />
-              <span className="userShowInfoTitle">annabeck99@gmail.com</span>
+              <span className="userShowInfoTitle">{user.email}</span>
             </div>
             <div className="userShowInfo">
               <LocationSearching className="userShowIcon" />
@@ -64,40 +81,60 @@ export default function User() {
                 <label>Username</label>
                 <input
                   type="text"
-                  placeholder="annabeck99"
+                  placeholder={`${user.username}`}
                   className="userUpdateInput"
+                  name="username"
+                  onChange={(e) =>
+                    setUser({ ...User, [e.target.name]: e.target.value })
+                  }
                 />
               </div>
               <div className="userUpdateItem">
                 <label>Full Name</label>
                 <input
                   type="text"
-                  placeholder="Anna Becker"
+                  placeholder={`${user.fullname}`}
                   className="userUpdateInput"
+                  name="fullname"
+                  onChange={(e) =>
+                    setUser({ ...User, [e.target.name]: e.target.value })
+                  }
                 />
               </div>
               <div className="userUpdateItem">
                 <label>Email</label>
                 <input
                   type="text"
-                  placeholder="annabeck99@gmail.com"
+                  placeholder={`${user.email}`}
                   className="userUpdateInput"
+                  name="email"
+                  onChange={(e) =>
+                    setUser({ ...User, [e.target.name]: e.target.value })
+                  }
                 />
               </div>
               <div className="userUpdateItem">
-                <label>Phone</label>
+                <label>isAdmin</label>
                 <input
                   type="text"
-                  placeholder="+1 123 456 67"
+                  placeholder={user.isAdmin ? "Yes" : "No"}
                   className="userUpdateInput"
+                  name="isAdmin"
+                  onChange={(e) =>
+                    setUser({ ...User, [e.target.name]: e.target.value })
+                  }
                 />
               </div>
               <div className="userUpdateItem">
-                <label>Address</label>
+                <label>Password</label>
                 <input
                   type="text"
-                  placeholder="New York | USA"
+                  placeholder="Password"
                   className="userUpdateInput"
+                  name="password"
+                  onChange={(e) =>
+                    setUser({ ...User, [e.target.name]: e.target.value })
+                  }
                 />
               </div>
             </div>
@@ -113,7 +150,7 @@ export default function User() {
                 </label>
                 <input type="file" id="file" style={{ display: "none" }} />
               </div>
-              <button className="userUpdateButton">Update</button>
+              <button className="userUpdateButton" onClick={handleUpdate}>Update</button>
             </div>
           </form>
         </div>

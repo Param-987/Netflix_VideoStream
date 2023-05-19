@@ -1,9 +1,7 @@
 import "./productList.css";
 import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
-import { productRows } from "../../dummyData";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import { useContext } from "react";
 import { MoviesContext } from "../../context/movieContext/MovieContext";
 import { useEffect } from "react";
@@ -14,7 +12,6 @@ export default function ProductList() {
 
   useEffect(()=>{
     getMovies(dispatch)
-
   },[dispatch]) 
 
   const handleDelete = (id) => {
@@ -22,11 +19,11 @@ export default function ProductList() {
   };
 
   const columns = [
-    { field: "_id", headerName: "ID", width: 90 },
+    { field: "_id", headerName: "ID", width: 200 },
     {
       field: "movie",
       headerName: "Movie",
-      width: 200,
+      width: 250,
       renderCell: (params) => {
         return (
           <div className="productListItem">
@@ -67,7 +64,7 @@ export default function ProductList() {
         rows={movies}
         disableSelectionOnClick
         columns={columns}
-        pageSize={8}
+        pageSize={12}
         checkboxSelection
         getRowId = {(r) => r._id}
       />

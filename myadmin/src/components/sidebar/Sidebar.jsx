@@ -12,6 +12,7 @@ import {
   Report,
   PlayCircleOutline,
 } from "@material-ui/icons";
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import ListIcon from "@mui/icons-material/List";
 import { Link } from "react-router-dom";
 
@@ -32,10 +33,10 @@ export default function Sidebar() {
               <Timeline className="sidebarIcon" />
               Analytics
             </li>
-            <li className="sidebarListItem">
+            {/* <li className="sidebarListItem">
               <TrendingUp className="sidebarIcon" />
               Sales
-            </li>
+            </li> */}
           </ul>
         </div>
         <div className="sidebarMenu">
@@ -62,11 +63,18 @@ export default function Sidebar() {
                 Lists
               </li>
             </Link>
-            
+            <Link to={'/newproduct'} className="link">
             <li className="sidebarListItem">
-              <BarChart className="sidebarIcon" />
-              Reports
+              <AddCircleOutlineIcon className="sidebarIcon" />
+              Add Movie
             </li>
+            </Link>
+            <Link to={'/newList'} className="link">
+            <li className="sidebarListItem">
+              <AddCircleOutlineIcon className="sidebarIcon" />
+              Add List
+            </li>
+            </Link>
           </ul>
         </div>
         <div className="sidebarMenu">

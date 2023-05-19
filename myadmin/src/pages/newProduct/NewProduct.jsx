@@ -5,6 +5,7 @@ import { MoviesContext } from "../../context/movieContext/MovieContext";
 import storage from "../../firebase";
 import {ref ,uploadBytes , getDownloadURL} from 'firebase/storage'
 import "./newProduct.css";
+import { useNavigate } from "react-router-dom";
 
 export default function NewProduct() {
   const [movie, setMovie] = useState(null);
@@ -16,6 +17,7 @@ export default function NewProduct() {
   const [uploaded, setUploaded] = useState(0);
 
   const { dispatch } = useContext(MoviesContext);
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -50,6 +52,7 @@ const upload = (items)=>{
   const handleSubmit = (e) => {
     e.preventDefault();
     createMovie(movie, dispatch);
+    navigate('/movies')
   };
 
   return (

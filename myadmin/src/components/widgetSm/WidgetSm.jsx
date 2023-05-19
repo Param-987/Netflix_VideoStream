@@ -3,8 +3,6 @@ import {  useEffect, useState} from "react";
 import { Visibility } from "@material-ui/icons";
 import axios from 'axios';
 
-// axios.defaults.proxy.host = "http://localhost:8800/api/"
-
 export default function WidgetSm() {
   const [newUsers,setNewUsers] = useState([])
 

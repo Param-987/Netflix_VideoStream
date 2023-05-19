@@ -19,7 +19,6 @@ const Home = ({type}) => {
               token:"Bearer " + JSON.parse(localStorage.getItem('user')).accessToken
             }
           })
-          console.log(res.data)
         setlists(res.data)
          
       } catch (error) {
@@ -32,7 +31,7 @@ const Home = ({type}) => {
   return (
     <div className='home'>
       <Navbar/>
-       <Featured type={type}/>
+       <Featured type={type} setGenre = {setGenre}/>
        {
         lists.map((list,idx)=> <List list = {list} key = {idx} />)
        }

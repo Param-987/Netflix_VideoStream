@@ -23,7 +23,7 @@ export default function  ListList() {
 
   const columns = [
     { field: "_id",   headerName: "ID", width: 250 },
-    { field: "title", headerName: "title", width: 150 },
+    { field: "title", headerName: "title", width: 300 },
     { field: "genre", headerName: "Genre", width: 150 },
     { field: "type",  headerName: "type",    width: 150 },
 
@@ -34,7 +34,7 @@ export default function  ListList() {
       renderCell: (params) => {
         return (
           <>
-            <Link to={{pathname:"/list/" + params.row._id,list:params.row}}>
+            <Link to={{pathname:"/list/" + params.row._id}} state = {{list:params.row}}>
               <button className="productListEdit">Edit</button>
             </Link>
             <DeleteOutline

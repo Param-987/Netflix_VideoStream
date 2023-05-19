@@ -1,3 +1,5 @@
+@import "../../app.scss";
+
 .navbar{
     width: 100%;
     z-index: 999;
@@ -21,10 +23,25 @@
         .left{
             img{
                 height: 25px;
-                margin-right: 40px;
+                margin-right: 20px;
+
+                @include mobile{
+                    display: none;
+                }
             }
             span{
-                margin-right: 40px;
+                margin-right: 20px;
+                cursor: pointer;
+
+                @include tablet{
+                    display: none;
+                }
+
+                &.navbarmainLinks{
+                    @include tablet{
+                        display: block;
+                    }
+                }
             }
             display: flex;
             align-items: center;
@@ -62,6 +79,8 @@
                         display: flex;
                         flex-direction: column;
                         position: absolute;
+                        right: 2px;
+                        font-size: 18px;
                     }
                 }
             }
