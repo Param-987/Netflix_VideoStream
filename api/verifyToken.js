@@ -14,8 +14,7 @@ function verify(req,res,next) {
         })
     }else{
         return res.status(401).json("U are not authenticated")
-    }
-         
+    }         
 }  
 
 module.exports = verify 
