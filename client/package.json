@@ -47,6 +47,5 @@
     "eslint-plugin-react": "^7.31.11",
     "node-sass": "^7.0.3",
     "sass": "^1.56.2"
-  },
-  "proxy": "https://netflixbackend-mhrz.onrender.com/api/"
+  }
 }

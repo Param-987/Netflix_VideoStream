@@ -14,7 +14,7 @@ const Featured = ({setGenre , type}) => {
   useEffect(()=>{
     const getrandomMovie = async ()=>{
       try {
-        const res = await axios.get(`movie/random?type=${type}`)
+        const res = await axios.get(`https://netflixbackend-mhrz.onrender.com/api/movie/random?type=${type}`)
         setContent(res.data[0])
       } catch (error) {
         console.log(error);

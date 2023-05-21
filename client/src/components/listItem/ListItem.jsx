@@ -14,13 +14,12 @@ export default function ListItem({index,item}) {
     useEffect(()=>{
         const getMovie = async () =>{
             try {
-                const res = await axios.get(`movie/find/${item}`,
+                const res = await axios.get(`https://netflixbackend-mhrz.onrender.com/api/movie/find/${item}`,
                 {
                     headers:{
                       token:"Bearer " + JSON.parse(localStorage.getItem('user')).accessToken
                     }
                   })
-                  console.log(res.data)
                   setMovie(res.data) 
             } catch (error) {
                 console.log(error);
