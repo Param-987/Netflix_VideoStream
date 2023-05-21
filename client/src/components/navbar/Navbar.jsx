@@ -1,4 +1,6 @@
-import { ArrowDropDown, Notifications, Search } from "@material-ui/icons";
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
+import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined';
 import { Link } from "react-router-dom";
 
 import React, { useContext } from "react";
@@ -39,15 +41,15 @@ const Navbar = () => {
           <span>My List</span>
         </div>
         <div className="right">
-          <Search className="icons" />
+          <SearchOutlinedIcon className="icons" />
           <span>KID</span>
-          <Notifications className="icons" />
+          <NotificationsNoneOutlinedIcon className="icons" />
           <img
             src="https://images.pexels.com/photos/6899260/pexels-photo-6899260.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
             alt=""
           />
           <div className="profile">
-            <ArrowDropDown className="icons" />
+            <ArrowDropDownOutlinedIcon className="icons" />
 
             <div className="options">
               <span>Settings</span>

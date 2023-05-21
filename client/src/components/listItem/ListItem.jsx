@@ -1,4 +1,7 @@
-import { Add, PlayArrow, ThumbUpAltOutlined ,ThumbDownOutlined } from '@material-ui/icons'
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import AddIcon from '@mui/icons-material/Add';
+import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
+import ThumbDownAltOutlinedIcon from '@mui/icons-material/ThumbDownAltOutlined';
 import axios from 'axios'
 import { useState ,useEffect } from 'react'
 import { Link } from 'react-router-dom'
@@ -43,10 +46,10 @@ export default function ListItem({index,item}) {
 
     <div className="iteminfo">
         <div className="icons">
-            <PlayArrow className='icon'/>
-            <Add className='icon'/>
-            <ThumbUpAltOutlined className='icon'/>
-            <ThumbDownOutlined className='icon'/>
+            <PlayArrowIcon className='icon'/>
+            <AddIcon className='icon'/>
+            <ThumbUpOutlinedIcon className='icon'/>
+            <ThumbDownAltOutlinedIcon className='icon'/>
         </div>
 
         <div className="iteminfoTop">

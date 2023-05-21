@@ -1,4 +1,5 @@
-import { ArrowBackIosOutlined, ArrowForwardIosOutlined } from '@material-ui/icons'
+import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
+import ArrowBackIosOutlinedIcon from '@mui/icons-material/ArrowBackIosOutlined';
 import { useRef, useState } from 'react'
 import ListItem from '../listItem/ListItem'
 import './list.scss'
@@ -32,14 +33,14 @@ export default function List({list}) {
         </span>
 
         <div className="wrapper">
-            <ArrowBackIosOutlined className='sliderArrow left' onClick = {() => handleClickFunction("left")}
+            <ArrowBackIosOutlinedIcon className='sliderArrow left' onClick = {() => handleClickFunction("left")}
             style = {{display : !isMoved && "none" }}
             />
             <div className="container" ref = {listRef}>{
                 list.content.map((item,idx)=> <ListItem index = {idx} item = {item} key ={idx} />)
             }
             </div>
-            <ArrowForwardIosOutlined className='sliderArrow right' onClick = {() => handleClickFunction("right")}/>
+            <ArrowForwardIosOutlinedIcon className='sliderArrow right' onClick = {() => handleClickFunction("right")}/>
         </div>
 
     </div>

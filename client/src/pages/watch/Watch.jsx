@@ -1,4 +1,4 @@
-import { ArrowBackOutlined } from '@material-ui/icons'
+import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import { Link, useLocation } from 'react-router-dom'
 import './watch.scss'
 
@@ -11,7 +11,7 @@ const Watch = (props) => {
     <div className='watch'>
       <Link to={'/'}>
         <div className="back">
-            <ArrowBackOutlined/>
+            <ArrowBackOutlinedIcon/>
             Home
         </div>
       </Link>

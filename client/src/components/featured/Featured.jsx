@@ -1,6 +1,7 @@
  import "./featured.scss";
 
-import { InfoOutlined, PlayArrow } from "@material-ui/icons";
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
@@ -48,12 +49,12 @@ const Featured = ({setGenre , type}) => {
         <div className="button">
               <Link to={'/watch'} state = {{movie:content}}>
             <button className="play">
-                <PlayArrow/>
+                <PlayArrowIcon/>
                 <span>Play</span>
             </button>
               </Link>
             <button className="more">
-                <InfoOutlined/>
+                <InfoOutlinedIcon/>
                 <span>Info</span>
                 
             </button>
