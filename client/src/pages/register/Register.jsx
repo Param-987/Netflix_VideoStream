@@ -1,7 +1,4 @@
-import axios from "axios";
 import { useState, useRef, useContext } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
-import App from "../../App";
 import "./register.scss";
 import { register } from "../../contextApi/authContext/apiCall";
 import { AuthContext } from "../../contextApi/authContext/LoginContext";
