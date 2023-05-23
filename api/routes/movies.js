@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const Movie = require('../models/Movie')
 const verify = require('../verifyToken')
+const List = require('./../models/List')
 
 
 // Create
@@ -42,12 +43,25 @@ router.put('/:id',verify , async (req,res)=>{
     }
 })
 
+
 // delete
+
+const deleteMovieFromList = async (id) =>{
+    try {
+        await List.updateMany({ content: id, }, {$pull : {content:id}})
+        await List.deleteMany({content:{$exists: true, $size: 0}})
+        console.log('Deleted Successfully')
+    } catch (error) {
+        console.log("Error In deletion",error)
+    }
+
+}
 
 router.delete('/:id',verify,async (req,res)=>{
     if(req.user.isAdmin){
         try {
             await Movie.findByIdAndDelete(req.params.id)
+            await deleteMovieFromList(req.params.id)
             res.status(200).json("Movie Deleted Successfully") 
         } catch (error) {
             res.status(500).json(error) 
@@ -56,6 +70,10 @@ router.delete('/:id',verify,async (req,res)=>{
         res.status(403).json("U cannot delete the movie") 
     }
 })
+
+
+
+
 // Get
 
 router.get('/find/:id',async (req,res)=>{
