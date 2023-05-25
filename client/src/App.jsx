@@ -10,12 +10,14 @@ import {
   Route, 
   Navigate
 } from "react-router-dom";
-import { useContext} from "react";
-import { AuthContext } from "./contextApi/authContext/LoginContext";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+
 
 
 const App = () => {
-  const {user}  = useContext(AuthContext)
+  const {user} = useSelector(state=>state.user)
+useEffect(()=>localStorage.setItem('user',user,[user]))
   return (
     <Router>
     <Routes>

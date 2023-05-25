@@ -1,10 +1,15 @@
-export const LoginReducer = (state, action) => {
+const initialState = {
+    user:JSON.parse(localStorage.getItem('user'))|| null,
+    isFetching:false,
+    isError:false
+}
+
+const UserReducer = (state = initialState, action) => {
     switch (action.type) {
         case "LOGIN_START":
             return {
-                user: null,
-                isFetching: true,
-                isError: false
+                ...state,
+                isFetching:true
             }
         case "LOGIN_SUCCESS":
             return {
@@ -25,8 +30,8 @@ export const LoginReducer = (state, action) => {
                 isError: false
             }
         default:
-            return {
-                ...state
-            };
+            return state
     }
 }
+
+export default UserReducer

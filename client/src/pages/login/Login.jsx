@@ -1,17 +1,18 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./login.scss";
-import { AuthContext } from "../../contextApi/authContext/LoginContext";
-import { login } from "../../contextApi/authContext/apiCall";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../redux/UserRedux/apiCall";
 
 export default function Login() {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
-  const { isFetching, dispatch, isError } = useContext(AuthContext);
-  const emailRef = useRef();
-  const passwordRef = useRef();
+  const { isError, isFetching } = useSelector((state) => state.user);
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+  const dispatch = useDispatch();
 
   const showError = () => {
     toast.error("You have entered wrong credentials.Try Again", {
@@ -24,10 +25,11 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    login({ email, password }, dispatch);
+    dispatch(login({ email, password }));
   };
 
   useEffect(() => {
+    console.log(isError)
     if (isError) {
       showError();
       emailRef.current.value = null;

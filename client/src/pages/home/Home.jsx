@@ -6,42 +6,52 @@ import Navbar from "../../components/navbar/Navbar";
 import Loader from "../loader/Loader";
 import "./home.scss";
 import axios from "axios";
+import {
+  fetchListStart,
+  fetchListSuccess,
+  fetchListFailure,
+} from "../../redux/ListRedux/ListAction";
+import { useDispatch, useSelector } from "react-redux";
 
 const Home = ({ type }) => {
-  const [lists, setlists] = useState([]);
   const [genre, setGenre] = useState(null);
   const [loading, setLoading] = useState(true);
+  const { lists } = useSelector((state) => state.list);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const getRandomList = async () => {
-      try {
-        await axios
-          .get(
-            `https://netflixbackend-mhrz.onrender.com/api/list${
-              type ? "?type=" + type : ""
-            }${genre ? "&genre=" + genre : ""}`,
-            {
-              headers: {
-                token:
-                  "Bearer " +
-                  JSON.parse(localStorage.getItem("user")).accessToken,
-              },
-            }
-          )
-          .then((res) => {
-            setlists(res.data);
-            setLoading(false);
-          });
-      } catch (error) {
-        console.log(error);
-      }
+    const fetchList = () => {
+      return async (dispatch) => {
+        try {
+          dispatch(fetchListStart());
+          await axios
+            .get(
+              `https://netflixbackend-mhrz.onrender.com/api/list${
+                type ? "?type=" + type : ""
+              }${genre ? "&genre=" + genre : ""}`,
+              {
+                headers: {
+                  token:
+                    "Bearer " +
+                    JSON.parse(localStorage.getItem("user")).accessToken,
+                },
+              }
+            )
+            .then((res) => {
+              dispatch(fetchListSuccess(res.data));
+              setLoading(false);
+            });
+        } catch (error) {
+          dispatch(fetchListFailure());
+        }
+      };
     };
-    getRandomList();
-  }, [type, genre]);
+    dispatch(fetchList());
+  }, [type, genre, dispatch]);
 
   return (
     <>
-      {loading ? (
+      {loading  ? (
         <Loader />
       ) : (
         <div className="home">

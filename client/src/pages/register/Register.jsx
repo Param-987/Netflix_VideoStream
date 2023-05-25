@@ -1,25 +1,22 @@
-import { useState, useRef, useContext } from "react";
+import { useState, useRef } from "react";
 import "./register.scss";
-import { register } from "../../contextApi/authContext/apiCall";
-import { AuthContext } from "../../contextApi/authContext/LoginContext";
+import { useDispatch } from "react-redux";
+import { register } from "../../redux/UserRedux/apiCall";
 
 export default function Register() {
 
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const {dispatch} = useContext(AuthContext)
-
-  const usernameRef = useRef();
-  const emailRef = useRef();
-  const passwordRef = useRef();
-
-  console.log(username);
+  
+  const dispatch = useDispatch()
+  const usernameRef = useRef(null);
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    register({ username , email, password } , dispatch);
+    dispatch(register({email,username,password}))
   };
 
   return (
@@ -30,8 +27,6 @@ export default function Register() {
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png"
           alt=""
         />
-
-        {/* <button className="loginButton" >Sign In</button> */}
       </div>
 
       <div className="container">
