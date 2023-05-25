@@ -1,19 +1,39 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import "./login.scss";
 import { AuthContext } from "../../contextApi/authContext/LoginContext";
 import { login } from "../../contextApi/authContext/apiCall";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Login() {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
+  const { isFetching, dispatch, isError } = useContext(AuthContext);
+  const emailRef = useRef();
+  const passwordRef = useRef();
 
-  const { isFetching , dispatch} = useContext(AuthContext);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    login({email,password},dispatch)
+  const showError = () => {
+    toast.error("You have entered wrong credentials.Try Again", {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 2000,
+      theme: "dark",
+      newestOnTop: true,
+    });
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    login({ email, password }, dispatch);
+  };
+
+  useEffect(() => {
+    if (isError) {
+      showError();
+      emailRef.current.value = null;
+      passwordRef.current.value = null;
+    }
+  }, [isError]);
 
   return (
     <div className="login">
@@ -32,20 +52,27 @@ export default function Login() {
           <input
             type="email"
             placeholder="Email or phone number"
+            ref={emailRef}
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
             type="password"
             placeholder="Password"
+            ref={passwordRef}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button className="loginButton" onClick={handleSubmit} disabled = {isFetching}>
+          <ToastContainer />
+          <button
+            className="loginButton"
+            onClick={handleSubmit}
+            disabled={isFetching}
+          >
             Sign In
           </button>
           <span>
             New to Netflix?
-            <Link to={'/register'}>
-             <b>Sign up now.</b>
+            <Link to={"/register"}>
+              <b>Sign up now.</b>
             </Link>
           </span>
           <small>
