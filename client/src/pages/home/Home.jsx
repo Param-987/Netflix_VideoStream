@@ -26,7 +26,7 @@ const Home = ({ type }) => {
           dispatch(fetchListStart());
           await axios
             .get(
-              `https://netflixbackend-mhrz.onrender.com/api/list${
+              `http://18.204.215.48:5000/api/list${
                 type ? "?type=" + type : ""
               }${genre ? "&genre=" + genre : ""}`,
               {
