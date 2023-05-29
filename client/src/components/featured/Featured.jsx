@@ -14,7 +14,7 @@ const Featured = ({setGenre , type}) => {
   useEffect(()=>{
     const getrandomMovie = async ()=>{
       try {
-        const res = await axios.get(`http://18.204.215.48:5000/api/movie/random?type=${type}`)
+        const res = await axios.get(`https://api-param-987.vercel.app/api/movie/random?type=${type}`)
         setContent(res.data[0])
       } catch (error) {
         console.log(error);

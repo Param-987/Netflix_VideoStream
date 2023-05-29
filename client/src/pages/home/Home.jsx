@@ -26,7 +26,7 @@ const Home = ({ type }) => {
           dispatch(fetchListStart());
           await axios
             .get(
-              `http://18.204.215.48:5000/api/list${
+              `https://api-param-987.vercel.app/api/list${
                 type ? "?type=" + type : ""
               }${genre ? "&genre=" + genre : ""}`,
               {

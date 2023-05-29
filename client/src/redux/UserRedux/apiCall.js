@@ -6,7 +6,7 @@ export const login = (user) => {
         try {
             dispatch(loginStart());
             await axios
-                .post("http://18.204.215.48:5000/api/auth/login", user)
+                .post("https://api-param-987.vercel.app/api/auth/login", user)
                 .then((res) => dispatch(loginSuccess(res.data)));
         } catch (error) {
             dispatch(loginFailure());
@@ -18,7 +18,7 @@ export const register = (user) => {
     return async (dispatch) => {
         dispatch(loginStart())
         try {
-            await axios.post("http://18.204.215.48:5000/api/auth/register", user)
+            await axios.post("https://api-param-987.vercel.app/api/auth/register", user)
             .then((res) => dispatch(loginSuccess(res.data)))
         } catch (error) { dispatch(loginFailure()) }
     }

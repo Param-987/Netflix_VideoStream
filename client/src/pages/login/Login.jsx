@@ -29,7 +29,6 @@ export default function Login() {
   };
 
   useEffect(() => {
-    console.log(isError)
     if (isError) {
       showError();
       emailRef.current.value = null;
