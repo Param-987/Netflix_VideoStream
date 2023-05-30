@@ -5,11 +5,11 @@ const dotenv = require('dotenv')
 const authRoute = require('./routes/auth')
 const userRoute = require('./routes/users')
 const movieRoute = require('./routes/movies')
-const listRoute = require('./routes/list')
+const listRoute = require('./routes/list') 
 let cors = require("cors");
 app.use(cors());
 dotenv.config();
-
+ 
 mongoose.set('strictQuery', true);
 mongoose.connect(process.env.MONGO_URL)
     .then(() => console.log("DB connection created successfully"))
