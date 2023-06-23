@@ -18,7 +18,7 @@ import { useEffect } from "react";
 const App = () => {
   const {user} = useSelector(state=>state.user)
   console.log("user:",user)
-  useEffect(()=>localStorage.setItem('user',JSON.stringify(user)))
+  useEffect(()=>localStorage.setItem('user',JSON.stringify(user)),[user])
   return (
     <Router>
     <Routes>

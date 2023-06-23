@@ -97,9 +97,6 @@ router.delete('/:id', verify, async (req, res) => {
     }
 })
 
-
-
-
 // Get
 
 router.get('/find/:id', async (req, res) => {
@@ -139,21 +136,13 @@ router.get('/random', async (req, res) => {
 })
 
 // GetAll
-router.get('/', verify, async (req, res) => {
-    if (req.user.isAdmin) {
+router.get('/', async (req, res) => {
         try {
             const movies = await Movie.find({isSeries:false})
             res.status(200).json(movies.reverse())
         } catch (error) {
             res.status(500).json(error)
         }
-    } else {
-        res.status(403).json("U cannot delete the movie")
-    }
 })
-
-
-
-
 
 module.exports = router

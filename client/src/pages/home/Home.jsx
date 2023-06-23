@@ -20,8 +20,6 @@ const Home = ({ type }) => {
     dispatch(fetchList());
   }, [dispatch]);
 
-  console.log("Hello")
-
 
   return (
     <>

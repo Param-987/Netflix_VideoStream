@@ -1,6 +1,6 @@
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
 import ArrowBackIosOutlinedIcon from "@mui/icons-material/ArrowBackIosOutlined";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import ListItem from "../listItem/ListItem";
 import "./list.scss";
 import { handleClickFunction } from "../../Functions/Home";

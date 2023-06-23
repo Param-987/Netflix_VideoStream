@@ -109,21 +109,21 @@ router.get('/random', async (req, res) => {
 })
 
 // GetAll
-router.get('/', verify, async (req, res) => {
-    if (req.user.isAdmin) {
+router.get('/', async (req, res) => {
+    // if (req.user.isAdmin) {
         try {
             const allWeb = await WebSeries.find()
             res.status(200).json(allWeb.reverse())
         } catch (error) {
             res.status(500).json(error)
         }
-    } else {
-        res.status(403).json("U are not allowed to call")
-    }
+    // } else {
+    //     res.status(403).json("U are not allowed to call")
+    // }
 })
 
-router.get('/series',verify , async (req,res)=>{
-    if(req.user.isAdmin){
+router.get('/series' , async (req,res)=>{
+    // if(req.user.isAdmin){
         try {
             const movies = await Movie.find({isSeries:true})
             // console.log(first)
@@ -131,9 +131,9 @@ router.get('/series',verify , async (req,res)=>{
         } catch (error) {
             res.status(500).json(error) 
         }
-    }else{
-        res.status(403).json("U are not allowed")
-    }
+    // }else{
+    //     res.status(403).json("U are not allowed")
+    // }
 })
 
 
