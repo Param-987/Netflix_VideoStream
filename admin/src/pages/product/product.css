@@ -101,6 +101,7 @@
 
 .productFormLeft > input {
   margin-bottom: 10px;
+  width: 800px;
   border: none;
   padding: 5px;
   border-bottom: 1px solid gray;

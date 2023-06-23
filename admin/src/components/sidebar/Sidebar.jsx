@@ -55,10 +55,22 @@ export default function Sidebar() {
                 Lists
               </li>
             </Link>
+            <Link to="/weblist" className="link">
+              <li className="sidebarListItem">
+                <ListIcon className="sidebarIcon" />
+                Web Series
+              </li>
+            </Link>
             <Link to={'/newproduct'} className="link">
             <li className="sidebarListItem">
               <AddCircleOutlineIcon className="sidebarIcon" />
               Add Movie
+            </li>
+            </Link>
+            <Link to={'/newWeb'} className="link">
+            <li className="sidebarListItem">
+              <AddCircleOutlineIcon className="sidebarIcon" />
+              Add Web Series
             </li>
             </Link>
             <Link to={'/newList'} className="link">

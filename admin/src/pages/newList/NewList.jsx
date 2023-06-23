@@ -1,23 +1,26 @@
-import { useContext } from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useContext,useState,useEffect} from "react";
 import { createList } from "../../context/ListContext/apiCalls";
 import { ListContext } from "../../context/ListContext/ListContext";
-import { createMovie, getMovies } from "../../context/movieContext/apiCalls";
+import { getMovies } from "../../context/movieContext/apiCalls";
 import { MoviesContext } from "../../context/movieContext/MovieContext";
+import {SeriesListContext} from "../../context/webSeriesContext/WebContext"
 import "./newList.css";
 import { useNavigate } from "react-router-dom";
+import { getWeb } from "../../context/webSeriesContext/apiCalls";
+import Select from "react-select"
 
 export default function NewList() {
-  const [list, setList] = useState(null);
+  const [list, setList] = useState({});
   const navigate = useNavigate();
 
   const { dispatch } = useContext(ListContext);
   const { movies, dispatch: dispatchMovie } = useContext(MoviesContext);
+  const {seriesList,dispatch:dispatchSeries} = useContext(SeriesListContext)
 
   useEffect(() => {
     getMovies(dispatchMovie);
-  }, [dispatchMovie]);
+    getWeb(dispatchSeries);
+  }, [dispatchMovie,dispatchSeries]);
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -35,6 +38,16 @@ export default function NewList() {
     navigate("/lists");
   };
 
+  const options = [
+    { value: "Action", label: "Action" },
+    { value: "Comedy", label: "Comedy" },
+    { value: "Crime", label: "Crime" },
+    { value: "Horror", label: "Horror" },
+    { value: "Romance", label: "Romance" },
+    { value: "Thriller", label: "Thriller" },
+  ];
+
+
   return (
     <div className="newProduct">
       <h1 className="addProductTitle">New List</h1>
@@ -51,11 +64,10 @@ export default function NewList() {
           </div>
           <div className="addProductItem">
             <label>Genre</label>
-            <input
-              type="text"
-              placeholder="action"
-              name="genre"
-              onChange={handleChange}
+            <Select
+              options={options}
+              isMulti={true}
+              onChange={(sel) =>setList({...list,"genre":sel.map(opt=>opt.value)})}
             />
           </div>
           <div className="addProductItem">
@@ -76,14 +88,16 @@ export default function NewList() {
               onChange={handleSelect}
               style={{ height: "280px" }}
             >
-              {movies.map((movie) => (
+              {[...movies,...seriesList].map((movie) => (
+                // <div >
                 <option
                   key={movie._id}
                   value={movie._id}
                   className="optionList"
                 >
-                  <div>{movie.title}        |         {movie.genre}</div>  
+                  {movie.title}        |         {movie.genre.join(" , ")}
                 </option>
+                  // </div>  
               ))}
             </select>
           </div>

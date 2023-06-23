@@ -5,6 +5,7 @@ const dotenv = require('dotenv')
 const authRoute = require('./routes/auth')
 const userRoute = require('./routes/users')
 const movieRoute = require('./routes/movies')
+const webRoute = require('./routes/webSeries')
 const listRoute = require('./routes/list') 
 let cors = require("cors");
 app.use(cors());
@@ -23,6 +24,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/auth', authRoute)
 app.use('/api/movie', movieRoute)
+app.use('/api/web', webRoute)
 app.use('/api/user', userRoute)
 app.use('/api/list', listRoute)
 

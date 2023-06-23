@@ -1,7 +1,8 @@
 import axios from "axios";
-import { createMovieFailure, createMovieStart, createMovieSuccess, deleteMovieFailure, deleteMovieStart, deleteMovieSuccess, getMoviesFailure, getMoviesStart, getMoviesSuccess } from "./MovieAction";
+import { createMovieFailure, createMovieStart, createMovieSuccess, deleteMovieFailure, deleteMovieStart, deleteMovieSuccess, getMoviesFailure, getMoviesStart, getMoviesSuccess, updateMovieFailure, updateMovieStart, updateMovieSuccess } from "./MovieAction";
 
 export const getMovies = async (dispatch) => {
+    console.log("first")
     dispatch(getMoviesStart())
     try {
         const res = await axios.get(process.env.REACT_APP_URL + 'movie', {
@@ -44,3 +45,37 @@ export const createMovie = async (movie, dispatch) => {
         dispatch(createMovieFailure())
     }
 }
+
+
+// updateMovie
+
+export const updateMovie = async (_id, body, dispatch) => {
+    try {
+        dispatch(updateMovieStart())
+        const data = await axios.put(process.env.REACT_APP_URL + "movie/"+_id,body,{
+            headers:{
+                token: "Bearer " + JSON.parse(localStorage.getItem('user')).accessToken,
+            }
+        })
+        dispatch(updateMovieSuccess(data.data))
+    } catch (error) {
+        dispatch(updateMovieFailure());
+    }
+}
+
+export const logicalSort = (a, b) => {
+    const matchA = a.title.match(/S(\d+) E(\d+)/);
+    const matchB = b.title.match(/S(\d+) E(\d+)/);
+  
+    if (matchA && matchB) {
+      const [, seasonA, episodeA] = matchA;
+      const [, seasonB, episodeB] = matchB;
+  
+      if (parseInt(seasonA) === parseInt(seasonB)) {
+        return parseInt(episodeA) - parseInt(episodeB);
+      }
+  
+      return parseInt(seasonA) - parseInt(seasonB);
+    }
+    return a.title.localeCompare(b.title);
+};

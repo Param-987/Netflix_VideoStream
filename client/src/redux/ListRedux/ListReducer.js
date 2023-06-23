@@ -1,4 +1,4 @@
-import { FETCH_LIST_FAILURE, FETCH_LIST_START, FETCH_LIST_SUCCESS } from "./ListType";
+import { FETCH_LIST_FAILURE, FETCH_LIST_START, FETCH_LIST_SUCCESS } from "./ListAction";
 
 const initialState = {
     lists:[],

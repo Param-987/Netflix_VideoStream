@@ -1,27 +1,31 @@
-import { Link, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./product.css";
 import PublishIcon from '@mui/icons-material/Publish';
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { updateMovie } from "../../context/movieContext/apiCalls";
+import { MoviesContext } from "../../context/movieContext/MovieContext";
 
 export default function Product() {
     const location = useLocation();
-    const {movie} = location.state 
-    const [Movie,setMovie]  = useState(location.state)
+    const {movie,_id} = location.state
+    const [Movie,setMovie]  = useState({})
+    const {dispatch} = useContext(MoviesContext)
+    const navigate = useNavigate()
 
     const handleChange = (e)=>{
-        console.log(e,e.target.value)
-        // setMovie({...Movie,[e.target.name] = el.ar})
-
+        setMovie({...Movie,[e.target.name]: e.target.value})
     }
 
+    const handleSubmit = (e)=>{
+        e.preventDefault();
+        updateMovie(_id,Movie,dispatch)
+        navigate('/movies')
+    }
 
   return (
     <div className="product">
       <div className="productTitleContainer">
         <h1 className="productTitle">Movie</h1>
-        <Link to="/newproduct">
-          <button className="productAddButton">Create</button>
-        </Link>
       </div>
       <div className="productTop">
           <div className="productTopRight">
@@ -55,15 +59,22 @@ export default function Product() {
                   <label>Movie Title</label>
                   <input type="text" placeholder={movie.title} onChange={handleChange}  name="title"/>
                   <label>Year</label>
-                  <input type="text" placeholder={movie.year} name="year"/>
+                  <input type="text" placeholder={movie.year} onChange={handleChange} name="year"/>
+                  <label>Thumbnail</label>
+                  <input type="text" placeholder={movie.img} onChange={handleChange} name="img"/>
+                  <label>Description</label>
+                  <input type="text" placeholder={movie.desc} onChange={handleChange} name="desc"/>
                   <label>Genre</label>
-                  <input type="text" placeholder={movie.genre} name="genre"/>
+                  <input type="text" placeholder={movie.genre} onChange={handleChange} name="genre"/>
                   <label>Limit</label>
-                  <input type="text" placeholder={movie.limit} name="limit"/>
-                  <label>Trailer</label>
-                  <input type="file" placeholder={movie.trailer} name="trailer"/>
+                  <input type="text" placeholder={movie.limit} onChange={handleChange} name="limit"/>
                   <label>Video</label>
-                  <input type="file" placeholder={movie.video} name="video"/>
+                  <input type="text" placeholder={movie.video} onChange={handleChange} name="video"/>
+                  <label>Type</label>
+                  <select defaultValue={movie.isSeries.toString()} onChange={handleChange} name="isSeries">
+                    <option value="true" >true</option>
+                    <option value="false">false</option>
+                  </select>
               </div>
               <div className="productFormRight">
                   <div className="productUpload">
@@ -73,7 +84,7 @@ export default function Product() {
                       </label>
                       <input type="file" id="file" style={{display:"none"}} />
                   </div>
-                  <button className="productButton">Update</button>
+                  <button className="productButton" onClick={handleSubmit}>Update</button>
               </div>
           </form>
       </div>

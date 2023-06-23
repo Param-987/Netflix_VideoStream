@@ -2,29 +2,21 @@
 
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import { useState } from "react";
-import { useEffect } from "react";
-import axios from "axios";
+import { useState , useEffect} from "react";
 import { Link } from "react-router-dom";
+import { getrandomMovie } from "../../Functions/Home";
 
 const Featured = ({setGenre , type}) => {
 
   const [content,setContent] = useState({})
 
   useEffect(()=>{
-    const getrandomMovie = async ()=>{
-      try {
-        const res = await axios.get(`https://api-param-987.vercel.app/api/movie/random?type=${type}`)
-        setContent(res.data[0])
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    getrandomMovie();
+    getrandomMovie(type,setContent);
   },[type])
+
   return (
   <div className="featured">
-    {type && (
+    {type && Object.keys(content).length && (
         <div className="category">
           <span>{type === "movies" ? "Movies" : "Series"}</span>
           <select name="genre" id="genre"onChange={(e) => setGenre(e.target.value)} >

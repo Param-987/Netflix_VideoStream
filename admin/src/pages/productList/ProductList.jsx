@@ -11,8 +11,8 @@ export default function ProductList() {
   const {movies,dispatch} = useContext(MoviesContext)
 
   useEffect(()=>{
-    getMovies(dispatch)
-  },[dispatch]) 
+    !movies.length && getMovies(dispatch)
+  },[movies,dispatch]) 
 
   const handleDelete = (id) => {
     deleteMovie(id,dispatch)
@@ -36,7 +36,6 @@ export default function ProductList() {
     { field: "genre", headerName: "Genre", width: 120 },
     { field: "year", headerName: "year", width: 120 },
     { field: "limit", headerName: "limit", width: 120 },
-    { field: "isSeries", headerName: "isSeries", width: 120 },
 
     {
       field: "action",
@@ -45,7 +44,7 @@ export default function ProductList() {
       renderCell: (params) => {
         return (
           <>
-            <Link to={"/product/" + params.row._id } state = {{movie:params.row}}>
+            <Link to={"/product/" + params.row._id } state = {{movie:params.row,_id:params.row._id}}>
               <button className="productListEdit">Edit</button>
             </Link>
             <DeleteOutlineIcon

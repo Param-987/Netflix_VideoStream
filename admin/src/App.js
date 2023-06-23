@@ -15,6 +15,10 @@ import ListList from "./pages/listList/ListList";
 import NewList from "./pages/newList/NewList";
 import List from "./pages/list/List";
 import Topbar from "./components/topbar/Topbar";
+import NewWebSeries from "./pages/newWebSeries/newWebSeries";
+import WebList from "./pages/webSeriesList/Weblist";
+import EditWebList from "./pages/editWebList/EditWebList";
+import AddNewSeason from "./pages/addNewSeason/AddNewSeason";
 
 
 function App() {
@@ -38,9 +42,13 @@ function App() {
           <Route path="/movies" element={<ProductList />}/>
           <Route path="/product/:productId" element={<Product />}/>
           <Route path="/newproduct" element={<NewProduct />}/>
+          <Route path="/newWeb" element={< NewWebSeries/>}/>
           <Route path="/lists" element={<ListList />}/>
           <Route path="/list/:listId" element={<List />}/>
           <Route path="/newlist" element={<NewList/>}/>
+          <Route path="/weblist" element={<WebList/>}/>
+          <Route path="/weblist/:webId" element={<EditWebList/>}/>
+          <Route path="/weblist/:webId/addNewSeason" element={<AddNewSeason/>}/>
         </>
         }
     </Routes>

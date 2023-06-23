@@ -1,66 +1,43 @@
-import React from "react";
 import { useState, useEffect } from "react";
 import Featured from "../../components/featured/Featured";
 import List from "../../components/list/List";
 import Navbar from "../../components/navbar/Navbar";
-import Loader from "../loader/Loader";
 import "./home.scss";
-import axios from "axios";
-import {
-  fetchListStart,
-  fetchListSuccess,
-  fetchListFailure,
-} from "../../redux/ListRedux/ListAction";
 import { useDispatch, useSelector } from "react-redux";
+import { getTypeList } from "../../Functions/Home";
+import { getAllMovie} from "../../redux/MovieRedux/apicalls";
+import { fetchList } from "../../redux/ListRedux/apicalls";
 
 const Home = ({ type }) => {
   const [genre, setGenre] = useState(null);
-  const [loading, setLoading] = useState(true);
   const { lists } = useSelector((state) => state.list);
   const dispatch = useDispatch();
 
+  const { MovieById } = useSelector((state) => state.movie);
+
   useEffect(() => {
-    const fetchList = () => {
-      return async (dispatch) => {
-        try {
-          dispatch(fetchListStart());
-          await axios
-            .get(
-              `https://api-param-987.vercel.app/api/list${
-                type ? "?type=" + type : ""
-              }${genre ? "&genre=" + genre : ""}`,
-              {
-                headers: {
-                  token:
-                    "Bearer " +
-                    JSON.parse(localStorage.getItem("user")).accessToken,
-                },
-              }
-            )
-            .then((res) => {
-              dispatch(fetchListSuccess(res.data));
-              setLoading(false);
-            });
-        } catch (error) {
-          dispatch(fetchListFailure());
-        }
-      };
-    };
+    dispatch(getAllMovie());
     dispatch(fetchList());
-  }, [type, genre, dispatch]);
+  }, [dispatch]);
+
+  console.log("Hello")
+
 
   return (
     <>
-      {loading  ? (
-        <Loader />
-      ) : (
+      {Object.keys(MovieById).length >  0 ? (
         <div className="home">
           <Navbar />
           <Featured type={type} setGenre={setGenre} />
-          {lists.map((list, idx) => (
-            <List list={list} key={idx} />
-          ))}
+          {getTypeList(lists, setGenre, type, genre)
+            .sort(() => Math.random() - 0.5)
+            .slice(0, 10)
+            .map((list, idx) => (
+              <List list={list} key={idx} />
+            ))}
         </div>
+      ) : (
+        <Navbar />
       )}
     </>
   );

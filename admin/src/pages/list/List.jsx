@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import "./list.css";
 
 export default function List() {
@@ -8,9 +8,6 @@ export default function List() {
     <div className="product">
       <div className="productTitleContainer">
         <h1 className="productTitle">list</h1>
-        <Link to={"/newList"}>
-          <button className="productAddButton">Create</button>
-        </Link>
       </div>
       <div className="productTop">
           <div className="productTopRight">

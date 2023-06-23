@@ -35,6 +35,7 @@ export const deleteList = async (id,dispatch) =>{
 export const createList = async (list,dispatch) =>{
     dispatch(createListStart())
     try {
+        console.log(list)
             const res = await axios.post(`${process.env.REACT_APP_URL}list/`,list,{
             headers:{
                 token:"Bearer " + JSON.parse(localStorage.getItem('user')).accessToken,

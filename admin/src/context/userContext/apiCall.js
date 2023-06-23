@@ -1,7 +1,5 @@
 import { deleteUserFailure, deleteUserStart, deleteUserSuccess, getUSerFailure, getUserStart, getUserSuccess, updateUserFailure, updateUserStart, updateUserSuccess } from "./UserAction"
 import axios from 'axios'
-import dotenv from 'dotenv'
-dotenv.config()
 
 export const getUserList = async (dispatch) =>{
     dispatch(getUserStart())

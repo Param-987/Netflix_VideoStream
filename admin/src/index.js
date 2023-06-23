@@ -5,9 +5,11 @@ import AuthContextProvider from './context/authContext/AuthContext';
 import ListContextProvider from './context/ListContext/ListContext';
 import MovieContextProvider from './context/movieContext/MovieContext';
 import UserContextProvider from './context/userContext/UserContext';
+import SeriesListContextProvider from './context/webSeriesContext/WebContext';
 
 createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
+  <SeriesListContextProvider>
     <AuthContextProvider>
       <MovieContextProvider>
         <ListContextProvider>
@@ -17,7 +19,7 @@ createRoot(document.getElementById('root')).render(
         </ListContextProvider>
       </MovieContextProvider>
     </AuthContextProvider>
-  // </React.StrictMode>,
+    </SeriesListContextProvider>
 )
  
 // ReactDOM.render(
