@@ -28,8 +28,8 @@ router.get('/login/failed', (req, res) => {
 })
 
 router.get('/google/callback', passport.authenticate('google',{
-    successRedirect:"https://netflix-video-stream.vercel.app/",
+    successRedirect:"https://storied-rugelach-a05a9d.netlify.app/",
     failureRedirect:'/login/failed'
 }))
-
+    
 module.exports = router
