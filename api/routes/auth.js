@@ -10,7 +10,8 @@ const bcrypt = require("bcrypt")
 router.post('/register', async (req, res) => {
     const newUser = new User({
         username: req.body.username,
-        email: req.body.email,
+        _id:req.body.email,
+        // email: req.body.email,
         password: await bcrypt.hash(req.body.password, 10),
         isAdmin: req.body.isAdmin,
         fullname: req.body.fullname
@@ -37,7 +38,7 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
     try {
-        const user = await User.findOne({ email: req.body.email })
+        const user = await User.findById({ _id: req.body.email })
         if (!user) {
             return res.status(401).send("Wrong password or Username")
         }

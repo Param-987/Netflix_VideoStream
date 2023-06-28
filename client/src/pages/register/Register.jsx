@@ -2,6 +2,8 @@ import { useState, useRef } from "react";
 import "./register.scss";
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/UserRedux/apiCall";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Link } from "react-router-dom";
 
 export default function Register() {
 
@@ -13,6 +15,7 @@ export default function Register() {
   const usernameRef = useRef(null);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,6 +31,15 @@ export default function Register() {
           alt=""
         />
       </div>
+
+        <Link to={'/login'} style={{textDecoration:"none",color:"inherit"}}>
+      <div className="text">
+        <ArrowBackIcon/>
+        <span>
+        Back to Login
+        </span>
+      </div>
+        </Link>
 
       <div className="container">
         <h1>Unlimited movies, TV shows, and more.</h1>

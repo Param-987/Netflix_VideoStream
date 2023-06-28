@@ -1,89 +1,118 @@
 .register {
-    width: 100vw;
-    height: 100vh;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 1) 100%
+    ),
+    url("https://cdn.hipwallpaper.com/i/98/21/dUyCkp.jpg");
+  background-size: cover;
+  position: relative;
+
+  .text {
+    color: white;
+    display: flex;
+    position: absolute;
+    top: 0;
+    // bottom: 99%; 
+    cursor: pointer !important;
+    z-index: 99;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.1);
     background: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0) 0%,
-        rgba(0, 0, 0, 1) 100%
-      ),
-      url("https://cdn.hipwallpaper.com/i/98/21/dUyCkp.jpg");
-      background-size: cover;
-    position: relative;
-  
-    .top {
-      .wrapper {
-        padding: 20px 50px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-  
-        .logo {
-          height: 40px;
-        }
-  
-        .loginButton {
-          background-color: red;
-          border: none;
-          color: white;
-          border-radius: 5px;
-          padding: 5px 15px;
-          font-size: 16px;
-          font-weight: 500;
-          cursor: pointer;
-        }
-      }
+      4deg,
+      rgba(0, 0, 0, 0.01) 0%,
+      rgba(0, 0, 0, 0.1) 68%,
+      rgba(255, 255, 255, 0.1) 100%
+    );
+    opacity: 0.9;
+    span {
+      font-size: 18px;
     }
-  
-    .container {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
+  }
+  .top {
+    .wrapper {
+      padding: 20px 50px;
       display: flex;
-      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      color: white;
-  
-      h1 {
-        font-size: 50px;
+      justify-content: space-between;
+
+      .logo {
+        height: 40px;
       }
-  
-      h2 {
-        margin: 20px;
-      }
-  
-      p {
-        font-size: 20px;
-      }
-  
-      .input {
-        width: 50%;
-        background-color: white;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-top: 20px;
-        height: 50px;
+
+      .loginButton {
+        background-color: red;
+        border: none;
+        color: white;
         border-radius: 5px;
-  
-        input{
-            flex: 9;
-            height: 100%;
-            border: none;
-            padding: 0 10px;
-        }
-  
-        .registerButton{
-            flex: 3;
-            height: 100%;
-            background-color: red;
-            border: none;
-            color: white;
-            font-size: 22px;
-            cursor: pointer;
-        }
+        padding: 5px 15px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
       }
     }
   }
+
+  .container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+
+    h1 {
+      font-size: 50px;
+    }
+
+    h2 {
+      margin: 20px;
+    }
+
+    p {
+      font-size: 20px;
+    }
+
+    .input {
+      width: 50%;
+      background-color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 20px;
+      height: 50px;
+      border-radius: 5px;
+
+      input {
+        flex: 9;
+        height: 100%;
+        border: none;
+        padding: 0 10px;
+        font-size: 20px !important;
+      }
+
+      .registerButton {
+        flex: 3;
+        height: 100%;
+        background-color: red;
+        outline: none;
+        border: none;
+        color: white;
+        font-size: 24px;
+        padding: 5px;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+Link{
+  text-decoration: none !important;
+  color: white !important;
+}

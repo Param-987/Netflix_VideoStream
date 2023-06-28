@@ -5,17 +5,19 @@ import { Link } from "react-router-dom";
 
 import { useState } from "react";
 import "./navbar.scss";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { LogOutStart } from "../../redux/UserRedux/LoginAction";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const {user} = useSelector(state=>state.user)
   const dispatch = useDispatch();
 
   window.onscroll = () => {
     setIsScrolled(window.pageYOffset === 0 ? false : true);
     return () => (window.onscroll = null);
   };
+
   return (
     <div className={isScrolled ? "navbar scrolled" : "navbar"}>
       <div className="container">
@@ -40,7 +42,7 @@ const Navbar = () => {
           <span>KID</span>
           <NotificationsNoneOutlinedIcon className="icons" />
           <img
-            src="https://images.pexels.com/photos/6899260/pexels-photo-6899260.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+            src={user.picture || "https://images.pexels.com/photos/6899260/pexels-photo-6899260.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" }
             alt=""
           />
           <div className="profile">

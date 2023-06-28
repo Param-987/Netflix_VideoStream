@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../redux/UserRedux/apiCall";
+import { handleGoogleLogin, login } from "../../redux/UserRedux/apiCall";
+import GoogleButton from "react-google-button";
 
 export default function Login() {
   const [email, setEmail] = useState(null);
@@ -76,10 +77,19 @@ export default function Login() {
               <b>Sign up now.</b>
             </Link>
           </span>
-          <small>
+          <span style={{margin:"5px auto" }}>Or</span>
+          <div>
+            <GoogleButton
+              className="googlebtn"
+              onClick={() => window.open(`http://localhost:5000/auth/google`, "_self")
+              // handleGoogleLogin()
+              }
+            />
+          </div>
+          {/* <p>
             This page is protected by Google reCAPTCHA to ensure you're not a
             bot. <b>Learn more</b>.
-          </small>
+          </p> */}
         </form>
       </div>
     </div>
