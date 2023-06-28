@@ -17,15 +17,15 @@ const webRoute = require('./routes/webSeries')
 const listRoute = require('./routes/list')
 const googleAuthRoute = require('./routes/googleAuth')
 
-app.set("trust proxy",1)
+app.set("trust proxy", 1)
 app.use(session({
     secret: 'your-secret-key',
     resave: false,
     saveUninitialized: false,
-    cookie:{
-        sameSite:"none",
-        secure:true,
-        maxAge:1000*60*60*24
+    cookie: {
+        sameSite: "none",
+        secure: true,
+        maxAge: 1000 * 60 * 60 * 24
     }
 }));
 
@@ -35,11 +35,16 @@ mongoose.connect(process.env.MONGO_URL)
     .catch((err) => console.log(`Db Connection Error ${err}`))
 
 
+app.use(cors({
+    origin: 'https://netflix-video-stream.vercel.app',
+    methods:"GET,POST,PUT,DELETE",
+    credentials: true
+}));
 
 app.use(express.json())
 app.use(passport.initialize())
 app.use(passport.session())
-app.use(cors())
+// app.use(cors())
 // app.use(cors({ origin: '*' }));
 
 // app.use(cors({
