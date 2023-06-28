@@ -9,12 +9,12 @@ const cookieSession = require('cookie-session')
 require('./passport/google')
 dotenv.config();
 
-// app.use(cors())
-app.use(cors({
-    origin: 'https://storied-rugelach-a05a9d.netlify.app',
-    methods:"GET,POST,PUT,DELETE",
-    credentials: true
-}));
+app.use(cors())
+// app.use(cors({
+//     origin: 'https://storied-rugelach-a05a9d.netlify.app',
+//     methods:"GET,POST,PUT,DELETE",
+//     credentials: true
+// }));
 
 const authRoute = require('./routes/auth')
 const userRoute = require('./routes/users')
@@ -23,17 +23,17 @@ const webRoute = require('./routes/webSeries')
 const listRoute = require('./routes/list')
 const googleAuthRoute = require('./routes/googleAuth')
 
-app.set("trust proxy", 1)
-app.use(session({
-    secret: 'your-secret-key',
-    resave: true,
-    saveUninitialized: true,
-    cookie: {
-        sameSite: "none",
-        secure: true,
-        maxAge: 1000 * 60 * 60 * 24
-    }
-}));
+// app.set("trust proxy", 1)
+// app.use(session({
+//     secret: 'your-secret-key',
+//     resave: true,
+//     saveUninitialized: true,
+//     cookie: {
+//         sameSite: "none",
+//         secure: true,
+//         maxAge: 1000 * 60 * 60 * 24
+//     }
+// }));
 
 mongoose.set('strictQuery', true);
 mongoose.connect(process.env.MONGO_URL)

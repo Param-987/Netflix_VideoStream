@@ -80,12 +80,12 @@ export default function Login() {
           </span>
           <span style={{margin:"5px auto" }}>Or</span>
           <div>
-            <GoogleButton
+            {/* <GoogleButton
               className="googlebtn"
               onClick={() => window.open(`https://netflixbackend-mhrz.onrender.com/auth/google`, "_self")
               // handleGoogleLogin()
               }
-            />
+            /> */}
           </div>
           {/* <p>
             This page is protected by Google reCAPTCHA to ensure you're not a
