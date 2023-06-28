@@ -17,11 +17,16 @@ const webRoute = require('./routes/webSeries')
 const listRoute = require('./routes/list')
 const googleAuthRoute = require('./routes/googleAuth')
 
-
+app.set("trust proxy",1)
 app.use(session({
     secret: 'your-secret-key',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie:{
+        sameSite:"none",
+        secure:true,
+        maxAge:1000*60*60*24
+    }
 }));
 
 mongoose.set('strictQuery', true);
