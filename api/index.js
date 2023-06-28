@@ -39,13 +39,13 @@ mongoose.connect(process.env.MONGO_URL)
 app.use(express.json())
 app.use(passport.initialize())
 app.use(passport.session())
-app.use(cors({ origin: '*' }));
+// app.use(cors({ origin: '*' }));
 
-// app.use(cors({
-//     origin:"http://localhost:5001",
-//     methods:"GET,POST,PUT,DELETE",
-//     credentials:true
-// }));
+app.use(cors({
+    origin:"http://localhost:5001",
+    methods:"GET,POST,PUT,DELETE",
+    credentials:true
+}));
 
 
 app.use('/api/auth', authRoute)
