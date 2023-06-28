@@ -42,7 +42,7 @@ app.use(passport.session())
 // app.use(cors({ origin: '*' }));
 
 app.use(cors({
-    origin:"http://localhost:5001",
+    origin:"https://netflix-video-stream.vercel.app/",
     methods:"GET,POST,PUT,DELETE",
     credentials:true
 }));
