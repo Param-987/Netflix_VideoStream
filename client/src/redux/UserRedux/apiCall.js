@@ -5,9 +5,10 @@ export const login = (user) => {
     return async (dispatch) => {
         try {
             dispatch(loginStart());
-            await axios
+            const response = await axios
                 .post("https://netflixbackend-mhrz.onrender.com/api/auth/login", user)
-                .then((res) => dispatch(loginSuccess(res.data)));
+                console.log(response)
+                dispatch(loginSuccess(response.data));
         } catch (error) {
             dispatch(loginFailure());
         }
