@@ -81,7 +81,7 @@ export default function Login() {
           <div>
             <GoogleButton
               className="googlebtn"
-              onClick={() => window.open(`http://localhost:5000/auth/google`, "_self")
+              onClick={() => window.open(`https://netflixbackend-mhrz.onrender.com/auth/google`, "_self")
               // handleGoogleLogin()
               }
             />
