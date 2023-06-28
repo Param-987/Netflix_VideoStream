@@ -26,7 +26,7 @@ router.get('/login/failed', (req, res) => {
 })
 
 router.get('/google/callback', passport.authenticate('google',{
-    successRedirect:"http://localhost:5001/",
+    successRedirect:"https://netflix-video-stream.vercel.app/",
     failureRedirect:'/auth/login/failed'
 }))
 
