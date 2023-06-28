@@ -9,12 +9,12 @@ const cookieSession = require('cookie-session')
 require('./passport/google')
 dotenv.config();
 
-app.use(cors())
-// app.use(cors({
-//     origin: 'https://storied-rugelach-a05a9d.netlify.app',
-//     methods:"GET,POST,PUT,DELETE",
-//     credentials: true
-// }));
+// app.use(cors())
+app.use(cors({
+    origin: 'https://netflix-video-stream.vercel.app',
+    methods:"GET,POST,PUT,DELETE",
+    credentials: true
+}));
 
 const authRoute = require('./routes/auth')
 const userRoute = require('./routes/users')
