@@ -9,12 +9,12 @@ const cookieSession = require('cookie-session')
 require('./passport/google')
 dotenv.config();
 
-app.use(cors())
-// app.use(cors({
-//     origin: 'https://netflix-video-stream.vercel.app',
-//     methods:"GET,POST,PUT,DELETE",
-//     credentials: true
-// }));
+// app.use(cors())
+app.use(cors({
+    origin: 'https://netflix-video-stream.vercel.app',
+    methods:"GET,POST,PUT,DELETE",
+    credentials: true
+}));
 
 const authRoute = require('./routes/auth')
 const userRoute = require('./routes/users')
@@ -26,8 +26,8 @@ const googleAuthRoute = require('./routes/googleAuth')
 app.set("trust proxy", 1)
 app.use(session({
     secret: 'your-secret-key',
-    resave: false,
-    saveUninitialized: false,
+    resave: true,
+    saveUninitialized: true,
     cookie: {
         sameSite: "none",
         secure: true,
@@ -39,9 +39,6 @@ mongoose.set('strictQuery', true);
 mongoose.connect(process.env.MONGO_URL)
     .then(() => console.log("DB connection created successfully"))
     .catch((err) => console.log(`Db Connection Error ${err}`))
-
-
-
 
 app.use(express.json())
 app.use(passport.initialize())

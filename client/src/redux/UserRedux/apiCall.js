@@ -10,6 +10,7 @@ export const login = (user) => {
                 console.log(response)
                 dispatch(loginSuccess(response.data));
         } catch (error) {
+            console.log(error)
             dispatch(loginFailure());
         }
     };
@@ -21,7 +22,10 @@ export const register = (user) => {
         try {
             await axios.post("https://netflixbackend-mhrz.onrender.com/api/auth/register", user)
                 .then((res) => dispatch(loginSuccess(res.data)))
-        } catch (error) { dispatch(loginFailure()) }
+        } catch (error) { 
+            console.log(error)
+            dispatch(loginFailure()) 
+        }
     }
 }
 
