@@ -9,6 +9,10 @@ const cookieSession = require('cookie-session')
 require('./passport/google')
 dotenv.config();
 
+app.use(cors({
+    origin: 'https://netflix-video-stream.vercel.app',
+    credentials: true
+}));
 
 const authRoute = require('./routes/auth')
 const userRoute = require('./routes/users')
@@ -35,11 +39,7 @@ mongoose.connect(process.env.MONGO_URL)
     .catch((err) => console.log(`Db Connection Error ${err}`))
 
 
-app.use(cors({
-    origin: 'https://netflix-video-stream.vercel.app',
-    methods:"GET,POST,PUT,DELETE",
-    credentials: true
-}));
+
 
 app.use(express.json())
 app.use(passport.initialize())
