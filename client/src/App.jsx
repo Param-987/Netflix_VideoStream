@@ -12,16 +12,16 @@ import {
 } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { handleGoogleLogin } from "./redux/UserRedux/apiCall";
+// import { handleGoogleLogin } from "./redux/UserRedux/apiCall";
 
 const App = () => {
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   useEffect(() => localStorage.setItem("user", JSON.stringify(user)), [user]);
 
-  useEffect(() => {
-    dispatch(handleGoogleLogin())
-  }, [dispatch])
+  // useEffect(() => {
+  //   dispatch(handleGoogleLogin())
+  // }, [dispatch])
 
   return (
     <Router>

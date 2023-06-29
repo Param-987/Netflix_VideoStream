@@ -3,10 +3,10 @@ const app = express()
 const mongoose = require("mongoose")
 const dotenv = require('dotenv')
 const cors = require("cors");
-const session = require('express-session');
-const passport = require('passport')
-const cookieSession = require('cookie-session')
-require('./passport/google')
+// const session = require('express-session');
+// const passport = require('passport')
+// const cookieSession = require('cookie-session')
+// require('./passport/google')
 dotenv.config();
 
 // app.use(cors())
@@ -41,8 +41,8 @@ mongoose.connect(process.env.MONGO_URL)
     .catch((err) => console.log(`Db Connection Error ${err}`))
 
 app.use(express.json())
-app.use(passport.initialize())
-app.use(passport.session())
+// app.use(passport.initialize())
+// app.use(passport.session())
 // app.use(cors())
 // app.use(cors({ origin: '*' }));
 
@@ -58,7 +58,7 @@ app.use('/api/movie', movieRoute)
 app.use('/api/web', webRoute)
 app.use('/api/user', userRoute)
 app.use('/api/list', listRoute)
-app.use('/auth', googleAuthRoute)
+// app.use('/auth', googleAuthRoute)
 
 
 app.get('/', async (req, res) => {

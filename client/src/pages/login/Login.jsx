@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch, useSelector } from "react-redux";
-import { handleGoogleLogin, login } from "../../redux/UserRedux/apiCall";
+import {  login } from "../../redux/UserRedux/apiCall";
 import GoogleButton from "react-google-button";
 
 export default function Login() {
