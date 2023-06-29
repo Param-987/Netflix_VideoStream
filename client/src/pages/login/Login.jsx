@@ -78,7 +78,7 @@ export default function Login() {
               <b>Sign up now.</b>
             </Link>
           </span>
-          <span style={{margin:"5px auto" }}>Or</span>
+          {/* <span style={{margin:"5px auto" }}>Or</span> */}
           <div>
             {/* <GoogleButton
               className="googlebtn"
