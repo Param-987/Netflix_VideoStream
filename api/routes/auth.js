@@ -8,10 +8,10 @@ const bcrypt = require("bcrypt")
 // Register 
 
 router.post('/register', async (req, res) => {
+    console.log(req.body)
     const newUser = new User({
         username: req.body.username,
         _id:req.body.email,
-        // email: req.body.email,
         password: await bcrypt.hash(req.body.password, 10),
         isAdmin: req.body.isAdmin,
         fullname: req.body.fullname
