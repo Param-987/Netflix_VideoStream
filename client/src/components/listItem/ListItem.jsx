@@ -2,7 +2,7 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import AddIcon from "@mui/icons-material/Add";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import ThumbDownAltOutlinedIcon from "@mui/icons-material/ThumbDownAltOutlined";
-import { useState} from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./listItem.scss";
 import { useSelector } from "react-redux";
@@ -23,7 +23,7 @@ export default function ListItem({ index, _id }) {
           }}
           onMouseLeave={() => setIsHovered(false)}
         >
-          <img src={MovieById[_id].img} alt="" />
+          <img src={MovieById[_id].img} alt="" loading="lazy"/>
           {isHovered && (
             <>
               <video src={MovieById[_id].trailer} autoPlay={true} loop />

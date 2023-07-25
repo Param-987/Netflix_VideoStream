@@ -10,18 +10,20 @@ const cors = require("cors");
 dotenv.config();
 
 // app.use(cors())
-app.use(cors({
-    origin: 'https://netflix-video-stream.vercel.app',
-    methods:"GET,POST,PUT,DELETE",
-    credentials: true
-}));
+app.use(cors('*'))
+// {
+    // origin: 'https://netflix-video-stream.vercel.app',
+    // methods:"GET,POST,PUT,DELETE",
+    // credentials: true
+   origin: '*'
+// }));
 
 const authRoute = require('./routes/auth')
 const userRoute = require('./routes/users')
 const movieRoute = require('./routes/movies')
 const webRoute = require('./routes/webSeries')
 const listRoute = require('./routes/list')
-const googleAuthRoute = require('./routes/googleAuth')
+// const googleAuthRoute = require('./routes/googleAuth')
 
 // app.set("trust proxy", 1)
 // app.use(session({

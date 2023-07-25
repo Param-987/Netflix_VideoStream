@@ -6,7 +6,7 @@ export const login = (user) => {
         try {
             dispatch(loginStart());
             const response = await axios
-                .post("https://netflixbackend-mhrz.onrender.com/api/auth/login", user)
+                .post("http://localhost:5000/api/auth/login", user)
                 dispatch(loginSuccess(response.data));
         } catch (error) {
             dispatch(loginFailure());
@@ -18,7 +18,7 @@ export const register = (user) => {
     return async (dispatch) => {
         dispatch(loginStart())
         try {
-            await axios.post("https://netflixbackend-mhrz.onrender.com/api/auth/register", user)
+            await axios.post("http://localhost:5000/api/auth/register", user)
                 .then((res) => dispatch(loginSuccess(res.data)))
         } catch (error) { 
             dispatch(loginFailure()) 

@@ -8,7 +8,7 @@ export const getTypeList = (lists, setGenre, type, genre) => {
 }
 export const getrandomMovie = async (type, setContent) => {
     try {
-        const res = await axios.get(`https://netflixbackend-mhrz.onrender.com/api/movie/random?type=${type}`)
+        const res = await axios.get(`http://localhost:5000/api/movie/random?type=${type}`)
         setContent(res.data[0])
     } catch (error) {
         console.log(error);

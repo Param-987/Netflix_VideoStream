@@ -7,9 +7,9 @@ export const getAllMovie = ()=>{
         try {
             dispatch(FETCH_MOVIE_START())
             const response = await Promise.all([
-                axios.get('https://netflixbackend-mhrz.onrender.com/api/movie',{headers: {token:"Bearer " +JSON.parse(localStorage.getItem("user")).accessToken,},}),
-                axios.get('https://netflixbackend-mhrz.onrender.com/api/web/series',{headers: {token:"Bearer " +JSON.parse(localStorage.getItem("user")).accessToken,},}),
-                axios.get('https://netflixbackend-mhrz.onrender.com/api/web',{headers: {token:"Bearer " +JSON.parse(localStorage.getItem("user")).accessToken,},})
+                axios.get('http://localhost:5000/api/movie',{headers: {token:"Bearer " +JSON.parse(localStorage.getItem("user")).accessToken,},}),
+                axios.get('http://localhost:5000/api/web/series',{headers: {token:"Bearer " +JSON.parse(localStorage.getItem("user")).accessToken,},}),
+                axios.get('http://localhost:5000/api/web',{headers: {token:"Bearer " +JSON.parse(localStorage.getItem("user")).accessToken,},})
             ])
             const MovieById = [...response[0].data,...response[1].data,...response[2].data]
             const Object = {}
